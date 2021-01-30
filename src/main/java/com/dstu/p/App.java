@@ -1,6 +1,7 @@
 package com.dstu.p;
 
 import com.dstu.p.service.Serialization;
+import com.dstu.p.service.ServiceReadWrite;
 import com.dstu.p.student.Student;
 import com.dstu.p.teacher.Teacher;
 
@@ -8,11 +9,15 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        /*com.dstu.p.interfaces.ReadFromFile read = new ReadFromFile();
-        ArrayList<Student> students = read.readStudent("D:\\DSTU\\Магистратура\\1 курс\\2 семестр\\Инструментальные средства проектирования информационных систем\\src\\main\\resources\\test.txt");
+        String str11 = "D:\\DSTU\\Магистратура\\1 курс\\2 семестр\\Инструментальные " +
+                "средства проектирования информационных систем\\src\\main\\resources\\test.txt";
+
+        ServiceReadWrite read = new ServiceReadWrite();
+        ArrayList<Student> students = read.readStudent(str11);
+
         for (Student student :students) {
             System.out.println(student.toString() + "\n");
-        }*/
+        }
         ArrayList<Student> studentArrayList = new ArrayList<>();
         studentArrayList.add(new Student("Victor","Ivanovich","Alehin","MIG",2));
         studentArrayList.add(new Student("Elizaveta","Igorevna","Alen","NOT",3));
@@ -30,7 +35,7 @@ public class App {
 
 //        new Serialization<Teacher>().writeObject(teacherPath, teacherArrayList);
 
-        new Serialization<>().readObject(teacherPath);
+        new Serialization<Teacher>().readObject(teacherPath);
 
     }
 }
