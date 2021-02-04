@@ -1,5 +1,6 @@
 package com.dstu.p;
 
+import com.dstu.p.interfaces.Man;
 import com.dstu.p.service.Serialization;
 import com.dstu.p.service.ServiceReadWrite;
 import com.dstu.p.student.Student;
@@ -9,33 +10,28 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        String str11 = "D:\\DSTU\\Магистратура\\1 курс\\2 семестр\\Инструментальные " +
-                "средства проектирования информационных систем\\src\\main\\resources\\test.txt";
+        String str11 = "src/main/resources/test.txt";
+        String pathStudent = "src/main/resources/student.bin";
+        String teacherPath = "src/main/resources/teacher.bin";
 
         ServiceReadWrite read = new ServiceReadWrite();
         ArrayList<Student> students = read.readStudent(str11);
-
         for (Student student :students) {
             System.out.println(student.toString() + "\n");
         }
-        ArrayList<Student> studentArrayList = new ArrayList<>();
-        studentArrayList.add(new Student("Victor","Ivanovich","Alehin","MIG",2));
-        studentArrayList.add(new Student("Elizaveta","Igorevna","Alen","NOT",3));
+        new Serialization<Student>().writeObject("src/main/resources/student.bin",students);
 
-        String pathStudent = "D:\\DSTU\\Магистратура\\1 курс\\2 семестр\\Инструментальные " +
-                "средства проектирования информационных систем\\src\\main\\resources\\student.bin";
-         new Serialization<Student>().readObject(pathStudent);
 
-        ArrayList<Teacher> teacherArrayList = new ArrayList<>();
-        teacherArrayList.add(new Teacher("Katy","Bong","Taylor","Lektor","IIVT",2));
-        teacherArrayList.add(new Teacher("Mary","Lonkaster","Meridit","Lektor","MKMT",3));
+        ArrayList<Teacher> teachers = read.readTeacher("src/main/resources/teachers.txt");
+        for (Student student :students) {
+            System.out.println(student.toString() + "\n");
+        }
+        new Serialization<Student>().writeObject("src/main/resources/student.bin",students);
 
-        String teacherPath = "D:\\DSTU\\Магистратура\\1 курс\\2 семестр\\Инструментальные средства проектирования" +
-                " информационных систем\\src\\main\\resources\\teacher.bin";
 
-//        new Serialization<Teacher>().writeObject(teacherPath, teacherArrayList);
+        new Serialization<Teacher>().writeObject(teacherPath, teachers);
+        new Serialization<Student>().writeObject(pathStudent, students);
 
-        new Serialization<Teacher>().readObject(teacherPath);
 
     }
 }

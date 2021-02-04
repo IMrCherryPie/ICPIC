@@ -20,19 +20,27 @@ public class Serialization<T>
             }
 
             ois.close();
+
+            new ServiceReadWrite().toLog("Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  " +
+                    "Десериализация объектов класса: " + arrayList.get(0).getClass() + " прошла успешно" );
         } catch (IOException | ClassNotFoundException e) {
+            new ServiceReadWrite().toLog("Line 26 * src/main/java/com/dstu/p/service/Serialization.java *  " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public void writeObject(String filePath, ArrayList<T> list){
+    public void writeObject(String filePath, ArrayList<T> arrayList){
         try {
             FileOutputStream fos = new FileOutputStream(filePath);// Преобразует объект в последовательность байтов.
             ObjectOutputStream oos = new ObjectOutputStream(fos); // Записывает последовательность абйтов в файл
-            for (T t: list) {
+
+            for (T t: arrayList) {
                 oos.writeObject(t);
             }
+
             oos.close();
+            new ServiceReadWrite().toLog("Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  " +
+                    "Сериализация объектов класса: " + arrayList.get(0).getClass() + " прошла успешно" );
         } catch (IOException e) {
             System.err.println("Нет файла fos для oos или нет файла в директории для сериализации");
             e.printStackTrace();

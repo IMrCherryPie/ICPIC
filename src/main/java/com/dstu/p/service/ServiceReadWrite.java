@@ -1,4 +1,4 @@
-/**
+/*
  * Popov IU
  * 30.01.2021
  *
@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ServiceReadWrite
     implements com.dstu.p.interfaces.ServiceReadWrite {
@@ -25,7 +26,8 @@ public class ServiceReadWrite
         try (FileReader reader = new FileReader(nameFile)) {
             // читаем посимвольно
             int c;
-            int i = 0;
+            int i = 0; // Подсчёт столбцов в строке
+            int j = 1; // Подсчёт строк в Базе
             com.dstu.p.student.Student student = new com.dstu.p.student.Student();
             while ((c = reader.read()) != -1) {
                 if (c != 44 && c != 13 && c != 10 ) {
@@ -49,7 +51,8 @@ public class ServiceReadWrite
                             student.setCourse(stringToInt(stringBuilder.toString()));
                             break;
                         default:
-                            System.out.println("Switch не сработал");
+                            new ServiceReadWrite().toLog("Line 54 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " +
+                                    "Обнаружено большее количество столбцов в базе, не все данные обработаны. * Обрабатываемый файл: " + nameFile + " Строка в БД: " + j);
                             break;
                     }
                     stringBuilder = new StringBuilder();
@@ -57,6 +60,7 @@ public class ServiceReadWrite
                 }
                 if (c == 10) {
                     i = 0;
+                    j++;
                     stringBuilder = new StringBuilder();
                     listStudents.add(student);
                     student = new com.dstu.p.student.Student();
@@ -65,6 +69,7 @@ public class ServiceReadWrite
             student.setCourse(stringToInt(stringBuilder.toString()));
             listStudents.add(student);
         } catch (IOException ex) {
+            new ServiceReadWrite().toLog("Line 70 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " + ex.getMessage());
             System.out.println(ex.getMessage());
         }
         return listStudents;
@@ -80,7 +85,8 @@ public class ServiceReadWrite
         try (FileReader reader = new FileReader(filePath)) {
             // читаем посимвольно
             int c;
-            int i = 0;
+            int i = 0; // Подсчёт столбцов в строке
+            int j = 1; // Подсчёт строк в Базе
             Teacher teacher = new Teacher();
             while ((c = reader.read()) != -1) {
                 if (c != 44 && c != 13 && c != 10 ) {
@@ -107,13 +113,15 @@ public class ServiceReadWrite
                             teacher.setExperience(stringToInt(stringBuilder.toString()));
                             break;
                         default:
-                            System.out.println("Switch не сработал");
+                            new ServiceReadWrite().toLog("Line 113 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " +
+                                    "Обнаружено большее количество столбцов в базе, не все данные обработаны. * Обрабатываемый файл: " + filePath + " Строка в БД: " + j);
                             break;
                     }
                     stringBuilder = new StringBuilder();
                     i++;
                 }
                 if (c == 10) {
+                    j++;
                     i = 0;
                     stringBuilder = new StringBuilder();
                     listTeacher.add(teacher);
@@ -123,6 +131,7 @@ public class ServiceReadWrite
             teacher.setExperience(stringToInt(stringBuilder.toString()));
             listTeacher.add(teacher);
         } catch (IOException ex) {
+            new ServiceReadWrite().toLog("Line 128 * src/main/java/com/dstu/p/service/ServiceReadWrite.java " + ex.getMessage());
             System.out.println(ex.getMessage());
         }
         return listTeacher;
@@ -134,6 +143,7 @@ public class ServiceReadWrite
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
+            new ServiceReadWrite().toLog("Line 140 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " + e.getMessage());
             System.err.print(string + "Неправильный формат строки!\n");
         }
         return 0;
@@ -149,15 +159,15 @@ public class ServiceReadWrite
             writer.write(str);
             writer.flush();
         } catch (IOException ex) {
+            new ServiceReadWrite().toLog("Line 156 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " + ex.getMessage());
             System.out.println(ex.getMessage());
         }
     }
     public void toLog(String str) {
-
-        String filePath = "";
+        String filePath = "src/main/resources/log.txt";
         try (FileWriter writer = new FileWriter(filePath, true)) {
             // запись всей строки
-            writer.write(str);
+            writer.write(new Date().toString() + " -> " + str + "\n");
             writer.flush();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

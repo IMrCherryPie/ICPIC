@@ -1,0 +1,4 @@
+Azbek,Beyula,Ahmatovichh,doctor of since,IIVT,3
+Azbek,Beyula,Ahmatovichh,doctor of since,IIVT,2
+Azbek,Beyula,Ahmatovichh,doctor of since,IIVT,5
+Azbek,Beyula,Ahmatovichh,doctor of since,IIVT,6
