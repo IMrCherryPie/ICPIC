@@ -20,45 +20,46 @@ public class Circle {
         this.y=y;
         this.width=width;
         this.height=height;
-    };
-
-    public void move(){
-        checkCollisionsC();
-
-        if (left){
-            x -= dots;
-        }
-        if (right){
-            x += dots;
-        }
-        if (up){
-            x -= dots;
-        }
-        if (down){
-            x -= dots;
-        }
     }
 
-    public void checkCollisionsC() {
-        if (x < -1 ){
-            right = true;
-            left = false;
-        }
-        if (x > 450 ){
-            right = false;
-            left = true;
-        }
+    public int getDots() {
+        return dots;
     }
 
-    public void circleChangeLineX() {
-        if (right){
-            right = false;
-            left = true;
-        }
-        if(left){
-            left = false;
-            right = true;
-        }
+    public void setDots(int dots) {
+        this.dots = dots;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
     }
 
     public int getX() {

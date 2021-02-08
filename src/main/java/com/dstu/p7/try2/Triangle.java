@@ -7,7 +7,7 @@ public class Triangle {
     private int[] y;
     private final int nPoints = 3;
 
-    int dots = 1;
+    private int dots = 1;
 
     private boolean left = false;
     private boolean right = true;
@@ -19,43 +19,6 @@ public class Triangle {
     public Triangle(int[] x, int[] y){
         this.x=x;
         this.y=y;
-    }
-
-    public void move(){
-        checkCollisionsT();
-        if (left){
-            changeValues(x, -dots);
-        }
-        if (right){
-            changeValues(x, dots);
-        }
-        if (up){
-            changeValues(y,dots);
-        }
-        if (down){
-            changeValues(y,-dots);
-        }
-    }
-    private void checkCollisionsT() {
-        if (x[0] < 40 ){
-            right = true;
-            left = false;
-        }
-        if (x[2] > 550 ){
-            right = false;
-            left = true;
-        }
-    }
-
-    public void changeValues(int[] t, int a){
-
-        for (int i = 0; i < t.length; i++) {
-            t[i] += a;
-        }
-    }
-
-    public int getnPoints() {
-        return nPoints;
     }
 
     public int[] getX() {
@@ -72,6 +35,10 @@ public class Triangle {
 
     public void setY(int[] y) {
         this.y = y;
+    }
+
+    public int getnPoints() {
+        return nPoints;
     }
 
     public int getDots() {

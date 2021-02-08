@@ -1,7 +1,5 @@
 package com.dstu.p7.try2;
 
-import com.dstu.p7.GraphicsDemo;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -77,16 +75,14 @@ public class MyPanel extends JPanel implements ActionListener {
 
         for (int i = 0; i < circles.size(); i++) {
             Circle circle = circles.get(i);
-//            circle.move();
             if (x == circle.getX() && y == circle.getY()){
-                circle.circleChangeLineX();
+                new MyThread().circleChangeLineX(circle);
             }
             new MyThread().run(circle);
         }
         if(!triangles.isEmpty()) {
             for (int i = 0; i < triangles.size(); i++) {
                 Triangle triangle = triangles.get(i);
-//                triangle.move();
                 new MyThread().run(triangle);
             }
         }
