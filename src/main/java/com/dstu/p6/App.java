@@ -1,10 +1,9 @@
-package com.dstu.p;
+package com.dstu.p6;
 
-import com.dstu.p.interfaces.Man;
-import com.dstu.p.service.Serialization;
-import com.dstu.p.service.ServiceReadWrite;
-import com.dstu.p.student.Student;
-import com.dstu.p.teacher.Teacher;
+import com.dstu.p6.service.Serialization;
+import com.dstu.p6.service.ServiceReadWrite;
+import com.dstu.p6.student.Student;
+import com.dstu.p6.teacher.Teacher;
 
 import java.util.ArrayList;
 

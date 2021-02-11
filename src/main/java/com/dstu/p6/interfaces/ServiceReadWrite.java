@@ -1,7 +1,7 @@
-package com.dstu.p.interfaces;
+package com.dstu.p6.interfaces;
 
-import com.dstu.p.student.Student;
-import com.dstu.p.teacher.Teacher;
+import com.dstu.p6.student.Student;
+import com.dstu.p6.teacher.Teacher;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.dstu.p.interfaces;
+package com.dstu.p6.interfaces;
 
 public interface Teacher
     extends Man {

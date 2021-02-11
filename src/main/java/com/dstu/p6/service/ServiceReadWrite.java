@@ -4,9 +4,10 @@
  *
  */
 
-package com.dstu.p.service;
+package com.dstu.p6.service;
 
-import com.dstu.p.teacher.Teacher;
+import com.dstu.p6.teacher.Teacher;
+import com.dstu.p6.student.Student;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,20 +16,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ServiceReadWrite
-    implements com.dstu.p.interfaces.ServiceReadWrite {
+    implements com.dstu.p6.interfaces.ServiceReadWrite {
     /**
      * Принимает на вход путь к файлу с базоай данных. Возвращает список обектов Student
      * Считывает посимвольно и записывает в объект, как только строка полностью считана отправляет объект в ArrayList
     */
-    public ArrayList<com.dstu.p.student.Student> readStudent(String nameFile) {
+    public ArrayList<Student> readStudent(String nameFile) {
         StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<com.dstu.p.student.Student> listStudents = new ArrayList<>();
+        ArrayList<Student> listStudents = new ArrayList<>();
         try (FileReader reader = new FileReader(nameFile)) {
             // читаем посимвольно
             int c;
             int i = 0; // Подсчёт столбцов в строке
             int j = 1; // Подсчёт строк в Базе
-            com.dstu.p.student.Student student = new com.dstu.p.student.Student();
+            Student student = new Student();
             while ((c = reader.read()) != -1) {
                 if (c != 44 && c != 13 && c != 10 ) {
                     stringBuilder.append((char) c);
@@ -63,7 +64,7 @@ public class ServiceReadWrite
                     j++;
                     stringBuilder = new StringBuilder();
                     listStudents.add(student);
-                    student = new com.dstu.p.student.Student();
+                    student = new Student();
                 }
             }
             student.setCourse(stringToInt(stringBuilder.toString()));

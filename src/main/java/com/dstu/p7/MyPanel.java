@@ -1,4 +1,4 @@
-package com.dstu.p7.try2;
+package com.dstu.p7;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,14 +35,12 @@ public class MyPanel extends JPanel implements ActionListener {
         circles.add(new Circle(10,10,30,30));
         circles.add(new Circle(10,50,30,30));
 
-        triangles.add(new Triangle(new int[]{10, 20, 30}, new int[]{30, 13, 30}));
         triangles.add(new Triangle(new int[]{10, 20, 30}, new int[]{90, 39, 90}));
-
+        triangles.add(new Triangle(new int[]{10, 20, 30}, new int[]{270, 117, 270}));
 
 
         timer = new Timer(10,this);
         timer.start();
-
 
     }
 
@@ -66,8 +64,6 @@ public class MyPanel extends JPanel implements ActionListener {
             g2D.setColor(new Color(color.nextInt()));
             g2D.fillPolygon(triangle.getX(),triangle.getY(),triangle.getnPoints());
         }
-
-
     }
 
     @Override

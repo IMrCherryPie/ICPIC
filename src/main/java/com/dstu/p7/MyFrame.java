@@ -1,4 +1,4 @@
-package com.dstu.p7.try2;
+package com.dstu.p7;
 
 import javax.swing.*;
 

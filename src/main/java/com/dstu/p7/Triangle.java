@@ -1,12 +1,13 @@
-package com.dstu.p7.try2;
+package com.dstu.p7;
 
-public class Circle {
 
-    int x;
-    int y;
-    int width;
-    int height;
-    int dots = 1;
+public class Triangle {
+
+    private int[] x;
+    private int[] y;
+    private final int nPoints = 3;
+
+    private int dots = 1;
 
     private boolean left = false;
     private boolean right = true;
@@ -14,12 +15,30 @@ public class Circle {
     private boolean down = false;
 
 
-    public Circle(){};
-    public Circle(int x, int y, int width, int height){
+    public Triangle(){};
+    public Triangle(int[] x, int[] y){
         this.x=x;
         this.y=y;
-        this.width=width;
-        this.height=height;
+    }
+
+    public int[] getX() {
+        return x;
+    }
+
+    public void setX(int[] x) {
+        this.x = x;
+    }
+
+    public int[] getY() {
+        return y;
+    }
+
+    public void setY(int[] y) {
+        this.y = y;
+    }
+
+    public int getnPoints() {
+        return nPoints;
     }
 
     public int getDots() {
@@ -60,37 +79,5 @@ public class Circle {
 
     public void setDown(boolean down) {
         this.down = down;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 }

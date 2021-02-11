@@ -1,12 +1,12 @@
-package com.dstu.p.teacher;
+package com.dstu.p6.teacher;
 
-import com.dstu.p.man.Man;
+import com.dstu.p6.man.Man;
 
 import java.io.Serializable;
 
 public class Teacher
         extends Man
-        implements com.dstu.p.interfaces.Teacher, Serializable {
+        implements com.dstu.p6.interfaces.Teacher, Serializable {
 
 
     private String position;

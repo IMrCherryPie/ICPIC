@@ -1,9 +1,9 @@
-package com.dstu.p.man;
+package com.dstu.p6.man;
 
 import java.io.Serializable;
 
 public class Man
-        implements com.dstu.p.interfaces.Man, Serializable {
+        implements com.dstu.p6.interfaces.Man, Serializable {
 
     private String name;
 

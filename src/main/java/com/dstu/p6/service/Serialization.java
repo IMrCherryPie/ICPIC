@@ -1,10 +1,10 @@
-package com.dstu.p.service;
+package com.dstu.p6.service;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class Serialization<T>
-        implements com.dstu.p.interfaces.Serialization {
+        implements com.dstu.p6.interfaces.Serialization {
 
     public void readObject(String filePath){
         ArrayList<T> arrayList = new ArrayList<>();

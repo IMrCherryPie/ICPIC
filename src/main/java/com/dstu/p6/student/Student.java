@@ -1,12 +1,12 @@
-package com.dstu.p.student;
+package com.dstu.p6.student;
 
-import com.dstu.p.man.Man;
+import com.dstu.p6.man.Man;
 
 import java.io.Serializable;
 
 public class Student
         extends Man
-        implements com.dstu.p.interfaces.Student, Serializable {
+        implements com.dstu.p6.interfaces.Student, Serializable {
 
     private String group;
 
