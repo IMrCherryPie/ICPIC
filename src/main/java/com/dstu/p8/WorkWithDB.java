@@ -19,17 +19,8 @@ public class WorkWithDB<T> {
         if (!arrayListObject.isEmpty()) {
 
             HashMap<String, ArrayList<String>> mapClassListField = getFields(arrayListObject);
-            getHashMapFieldValue(mapClassListField,arrayListObject);
-            for (int i = 0; i < arrayListObject.size(); i++) {
+//            getHashMapFieldValue(mapClassListField,arrayListObject);
 
-//                try {
-//                    statement.executeUpdate("INSERT INTO" + arrayList.getClass().getName() + " student (name, patronymic, surname, `group`, course) " +
-//                            "VALUES ('Victor', 'Victorov', 'Victorovich', 'Doc. of since', 'IIVT', 3)");
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-
-            }
         }
 
 
