@@ -7,21 +7,19 @@ import com.sun.corba.se.impl.ior.ObjectAdapterIdArray;
 import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.Field;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 public class WorkWithDB<T> {
 
-    private boolean checkOfRound = false;
+    private boolean aFirstRound = true;
 
     public void addNewData(ArrayList<T> arrayListObject, Statement statement) {
         if (!arrayListObject.isEmpty()) {
 
             HashMap<String, ArrayList<String>> mapClassListField = getFields(arrayListObject);
-            System.out.println(mapClassListField);
+            getHashMapFieldValue(mapClassListField,arrayListObject);
             for (int i = 0; i < arrayListObject.size(); i++) {
 
 //                try {
@@ -37,14 +35,55 @@ public class WorkWithDB<T> {
 
     }
 
-    private ArrayList<HashMap<String, String>> getHashMapFieldValue(HashMap<String, ArrayList<String>> mapClassListField, ArrayList<T> listObject) {
+    private HashMap<String,HashMap<String, String>> getHashMapFieldValue(HashMap<String, ArrayList<String>> mapClassListField, ArrayList<T> listObject) {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         HashMap<String, String> map = new HashMap<>();
 
-        StringBuilder key = new StringBuilder();
+        String tableName;
+        StringBuilder field = new StringBuilder();
         StringBuilder value = new StringBuilder();
+
         for (int i = 0; i < listObject.size(); i++) {
+
+            for (Map.Entry entry : mapClassListField.entrySet()) {
+                try {
+                    Class clazz = Class.forName(entry.getKey().toString());
+
+                    if (aFirstRound) {
+                        tableName = clazz.getSimpleName();
+                        aFirstRound = false;
+                    }
+
+                    ArrayList<String> fields = new ArrayList<>();
+
+                    fields = mapClassListField.get(entry.getKey().toString());
+                    System.out.println(fields);
+                    for (int j = 0; j < fields.size(); j++) {
+                        Field fieldOne;
+                        fieldOne =  listObject.get(i).getClass().getDeclaredField(fields.get(j));
+                        fieldOne.setAccessible(true);
+                        String type = fieldOne.get(listObject.get(j)).getClass().getSimpleName();
+
+//                        Не могу понять как вытащить значение из поля родителя.
+
+                        if (i == 1 ){
+                            fieldOne =  listObject.get(i).getClass().getSuperclass().getDeclaredField(fields.get(j));
+                            System.out.println();
+                        }else {
+                            System.out.println(fieldOne.get(listObject.get(j)));
+                        }
+
+                    }
+
+
+                } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
+            }
+            aFirstRound = true;
+        }
+       /* for (int i = 0; i < listObject.size(); i++) {
             for (int j = 0; j < listFields.size(); j++) {
                 key.append(listFields.get(j));
                 try {
@@ -59,8 +98,9 @@ public class WorkWithDB<T> {
                 }
                 key = new StringBuilder();
             }
-        }
-        return list;
+        }*/
+        HashMap<String,HashMap<String, String>> hashMapNTableNFieldValue = new HashMap<>();
+        return hashMapNTableNFieldValue;
     }
 
     private HashMap<String, ArrayList<String>> getFields(ArrayList<T> arrayList) {
@@ -99,7 +139,7 @@ public class WorkWithDB<T> {
                 clazz.newInstance();
                 className = clazz.getName();
                 if (!clazz.getSimpleName().equals("Object")) {
-                    mapClassField.putAll(getFieldsAllSuperClass(clazz, mapClassField, arrayListStringOfFields));
+                    getFieldsAllSuperClass(clazz, mapClassField, arrayListStringOfFields);
                 }
 
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
