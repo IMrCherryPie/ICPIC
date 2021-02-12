@@ -1,3 +1,7 @@
+/**
+ * Product by The Ivan
+ * The base class from which you want to inherit, not implement.
+ */
 package com.dstu.p6.man;
 
 import java.io.Serializable;

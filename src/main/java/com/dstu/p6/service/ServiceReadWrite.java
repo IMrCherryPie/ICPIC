@@ -1,7 +1,8 @@
-/*
- * Popov IU
- * 30.01.2021
- *
+/**
+ * Product by The Ivan
+ * The class reads data from a file. The file must contain CSV DB (Student / Teacher).
+ * Separating character (columns) = ","
+ * (Strings) "/n"
  */
 
 package com.dstu.p6.service;

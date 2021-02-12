@@ -1,3 +1,6 @@
+/**
+ * Product by The Ivan
+ */
 package com.dstu.p6.interfaces;
 
 import com.dstu.p6.student.Student;

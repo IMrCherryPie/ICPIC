@@ -1,3 +1,7 @@
+/**
+ * Product by The Ivan
+ *
+ */
 package com.dstu.p6.teacher;
 
 import com.dstu.p6.man.Man;

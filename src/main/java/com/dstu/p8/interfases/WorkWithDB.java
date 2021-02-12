@@ -1,8 +1,10 @@
-package com.dstu.p8.interfases;
+/**
+ * Product by The Ivan
+ * It was conceived as a class capable of accepting any object and preparing it for sending to the database.
+ * Not finished
+*/
 
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
+package com.dstu.p8.interfases;
 
 public interface WorkWithDB<T> {
 

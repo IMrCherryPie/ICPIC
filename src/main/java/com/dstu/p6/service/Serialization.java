@@ -1,3 +1,8 @@
+/**
+ * Product by The Ivan
+ * The class takes any object and serializes / deserializes it.
+ */
+
 package com.dstu.p6.service;
 
 import java.io.*;

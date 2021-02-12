@@ -1,3 +1,6 @@
+/**
+ * Product by The Ivan
+ */
 package com.dstu.p6.interfaces;
 
 public interface Student
