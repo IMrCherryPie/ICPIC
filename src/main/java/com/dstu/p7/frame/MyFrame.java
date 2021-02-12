@@ -1,11 +1,16 @@
-package com.dstu.p7;
+package com.dstu.p7.frame;
+
+import com.dstu.p7.panel.MyPanel;
 
 import javax.swing.*;
 
-public class MyFrame extends JFrame {
+public class MyFrame
+        extends JFrame
+        implements com.dstu.p7.interfaces.MyFrame
+         {
 
     MyPanel panel;
-    MyFrame(){
+    public MyFrame(){
         panel = new MyPanel();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

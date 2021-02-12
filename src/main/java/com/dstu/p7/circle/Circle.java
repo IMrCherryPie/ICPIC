@@ -1,6 +1,6 @@
-package com.dstu.p7;
+package com.dstu.p7.circle;
 
-public class Circle {
+public class Circle implements com.dstu.p7.interfaces.Circle {
 
     int x;
     int y;

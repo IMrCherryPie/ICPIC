@@ -1,4 +1,8 @@
-package com.dstu.p7;
+package com.dstu.p7.panel;
+
+import com.dstu.p7.thread.MyThread;
+import com.dstu.p7.triangle.Triangle;
+import com.dstu.p7.circle.Circle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +13,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MyPanel extends JPanel implements ActionListener {
+public class MyPanel
+        extends JPanel
+        implements com.dstu.p7.interfaces.MyPanel, ActionListener {
 
     final int PANEL_WIDTH = 500;
     final int PANEL_HEIGHT = 500;
@@ -23,7 +29,7 @@ public class MyPanel extends JPanel implements ActionListener {
     int x = 0;
     int y = 0;
 
-    MyPanel(){
+    public MyPanel(){
         this.setPreferredSize(new Dimension(PANEL_WIDTH,PANEL_HEIGHT));
 
         this.addKeyListener(new FieldKeyListener());

@@ -1,7 +1,7 @@
-package com.dstu.p7;
+package com.dstu.p7.triangle;
 
 
-public class Triangle {
+public class Triangle implements com.dstu.p7.interfaces.Triangle {
 
     private int[] x;
     private int[] y;

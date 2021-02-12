@@ -1,6 +1,12 @@
-package com.dstu.p7;
+package com.dstu.p7.thread;
 
-public class MyThread extends Thread {
+import com.dstu.p7.triangle.Triangle;
+import com.dstu.p7.circle.Circle;
+
+public class MyThread
+        extends Thread
+        implements com.dstu.p7.interfaces.MyThread
+{
     public void run(Circle t){
         moveC(t);
     }

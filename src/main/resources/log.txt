@@ -17,3 +17,7 @@ Mon Feb 08 12:46:26 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Seria
 Mon Feb 08 12:46:26 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
 Mon Feb 08 12:46:26 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.teacher.Teacher прошла успешно
 Mon Feb 08 12:46:26 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Fri Feb 12 11:49:40 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Fri Feb 12 11:49:40 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Fri Feb 12 11:49:40 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.teacher.Teacher прошла успешно
+Fri Feb 12 11:49:40 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
