@@ -1,17 +1,10 @@
-package com.dstu.p8;
+package com.dstu.p8.workWithDB;
 
-import com.dstu.p6.interfaces.Student;
-import com.dstu.p6.interfaces.Teacher;
-import com.sun.corba.se.impl.ior.ObjectAdapterIdArray;
-
-import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.Field;
-import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.util.*;
 
-public class WorkWithDB<T> {
+public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
 
     private boolean aFirstRound = true;
 
@@ -19,6 +12,7 @@ public class WorkWithDB<T> {
         if (!arrayListObject.isEmpty()) {
 
             HashMap<String, ArrayList<String>> mapClassListField = getFields(arrayListObject);
+            System.out.println(mapClassListField);
 //            getHashMapFieldValue(mapClassListField,arrayListObject);
 
         }
@@ -127,13 +121,13 @@ public class WorkWithDB<T> {
             Class clazz;
             try {
                 clazz = Class.forName(object.getSuperclass().getName());
-                clazz.newInstance();
+//                clazz.newInstance();
                 className = clazz.getName();
                 if (!clazz.getSimpleName().equals("Object")) {
                     getFieldsAllSuperClass(clazz, mapClassField, arrayListStringOfFields);
                 }
 
-            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
