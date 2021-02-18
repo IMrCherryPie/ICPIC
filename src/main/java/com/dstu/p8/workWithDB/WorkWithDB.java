@@ -14,10 +14,16 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
     private boolean aFirstRound = true;
     private Statement statement;
 
-    public void addNewData(ArrayList<T> arrayListObject, Statement statement) {
+    public void addNewData(ArrayList<Man> arrayListMan, Statement statement) {
         this.statement = statement;
-        if (!arrayListObject.isEmpty()) {
-            simplePushDBStudentOrTeacher(arrayListObject);
+        if (!arrayListMan.isEmpty()) {
+            if (arrayListMan instanceof com.dstu.p6.interfaces.Student){
+                ArrayList<Student> arrayList = new ArrayList<Student>((Collection<? extends Student>) arrayListMan);
+                simplePushDBStudent(arrayList);
+            }else if (arrayListMan instanceof com.dstu.p6.interfaces.Teacher){
+                ArrayList<Teacher> arrayList = new ArrayList<Teacher>((Collection<? extends Teacher>) arrayListMan);
+                simplePushDBTeacher(arrayList);
+            }
         }
     }
 
@@ -28,12 +34,13 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
         }
     }*/
 
-    private void simplePushDBStudentOrTeacher(ArrayList<T> listStudent){
+    private void simplePushDBStudent(ArrayList<Student> listStudent){
 
-        for (T man : listStudent) {
+        for (Student man : listStudent) {
             try {
                 if (man instanceof  Student) {
                     String tableName = "Student";
+                    man.getClass().getSimpleName();
                     String name = man.getName();
                     String patronymic = man.getPatronymic();
                     String surname = man.getSurname();
@@ -43,7 +50,20 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
                     statement.executeUpdate("INSERT INTO " + tableName +  " (naem, patronymic, surname, position, course) " +
                             "VALUES ( " + name + " " +patronymic + " " +surname + " " +position + " " + course + ")");
 
-                }else if (man instanceof Teacher){
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+    private void simplePushDBTeacher(ArrayList<Teacher> listStudent){
+
+        for (Teacher man : listStudent) {
+            try {
+                if (man instanceof  Teacher) {
 
                     String tableName = "Student";
                     String name = man.getName();
@@ -56,15 +76,12 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
                     statement.executeUpdate("INSERT INTO Teacher (name, patronymic, surname, position, department, experience) " +
                             "VALUES ( '" + name + "'," + "'" +patronymic + "'," + "'" +surname + "'," + "'" +position + "'," + "'" +department + "',"  +experience + ")");
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
-
+/*
     private HashMap<String,HashMap<String, String>> getHashMapFieldValue(HashMap<String, ArrayList<String>> mapClassListField, ArrayList<T> listObject) {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
@@ -113,7 +130,7 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
             }
             aFirstRound = true;
         }
-       /* for (int i = 0; i < listObject.size(); i++) {
+       *//* for (int i = 0; i < listObject.size(); i++) {
             for (int j = 0; j < listFields.size(); j++) {
                 key.append(listFields.get(j));
                 try {
@@ -128,7 +145,7 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
                 }
                 key = new StringBuilder();
             }
-        }*/
+        }*//*
         HashMap<String,HashMap<String, String>> hashMapNTableNFieldValue = new HashMap<>();
         return hashMapNTableNFieldValue;
     }
@@ -195,5 +212,5 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
             }
         }
         return mapClassField;
-    }
+    }*/
 }

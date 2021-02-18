@@ -4,7 +4,6 @@
 
 package com.dstu.p6.interfaces;
 
-
 public interface Man {
 
     String getName();
