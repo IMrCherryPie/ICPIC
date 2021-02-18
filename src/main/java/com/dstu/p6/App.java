@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        String str11 = "src/main/resources/test.txt";
+
+        String str11 = "src/main/resources/csv.csv";
         String pathStudent = "src/main/resources/student.bin";
         String teacherPath = "src/main/resources/teacher.bin";
 
@@ -33,4 +34,6 @@ public class App {
 
 
     }
+
+
 }

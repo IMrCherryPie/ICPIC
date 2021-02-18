@@ -18,7 +18,6 @@ public class Serialization<T>
             ObjectInputStream ois = new ObjectInputStream(fis);
 
             arrayList.add ((T) ois.readObject());
-            arrayList.add((T) ois.readObject());
 
             for (T t : arrayList) {
                 System.out.println(t);

@@ -1,3 +1,0 @@
-Azbek,Beyula,Ahmatovichh,VIS41,12
-Azbek,Beyula,Ahmatovichh,VIS42,23
-Azbek,Beyula,Ahmatovichh,VIS43,34

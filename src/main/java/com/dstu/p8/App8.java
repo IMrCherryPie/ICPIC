@@ -1,5 +1,6 @@
 package com.dstu.p8;
 
+import com.dstu.p6.interfaces.Man;
 import com.dstu.p6.service.ServiceReadWrite;
 import com.dstu.p6.student.Student;
 import com.dstu.p8.workWithDB.WorkWithDB;

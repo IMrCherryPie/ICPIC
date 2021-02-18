@@ -7,6 +7,7 @@
 
 package com.dstu.p6.service;
 
+import com.dstu.p6.interfaces.Man;
 import com.dstu.p6.teacher.Teacher;
 import com.dstu.p6.student.Student;
 
@@ -21,16 +22,17 @@ public class ServiceReadWrite
     /**
      * Принимает на вход путь к файлу с базоай данных. Возвращает список обектов Student
      * Считывает посимвольно и записывает в объект, как только строка полностью считана отправляет объект в ArrayList
-    */
-    public ArrayList<Student> readStudent(String nameFile) {
+     * @return
+     */
+    public ArrayList<Student> readStudent(String filePath) {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Student> listStudents = new ArrayList<>();
-        try (FileReader reader = new FileReader(nameFile)) {
+        try (FileReader reader = new FileReader(filePath)) {
             // читаем посимвольно
             int c;
             int i = 0; // Подсчёт столбцов в строке
             int j = 1; // Подсчёт строк в Базе
-            Student student = new Student();
+            Man student = new Student();
             while ((c = reader.read()) != -1) {
                 if (c != 44 && c != 13 && c != 10 ) {
                     stringBuilder.append((char) c);
@@ -47,14 +49,14 @@ public class ServiceReadWrite
                             student.setPatronymic(stringBuilder.toString());
                             break;
                         case (3):
-                            student.setGroup(stringBuilder.toString());
+                            ((Student) student).setGroup(stringBuilder.toString());
                             break;
                         case (4):
-                            student.setCourse(stringToInt(stringBuilder.toString()));
+                            ((Student) student).setCourse(stringToInt(stringBuilder.toString()));
                             break;
                         default:
                             new ServiceReadWrite().toLog("Line 54 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " +
-                                    "Обнаружено большее количество столбцов в базе, не все данные обработаны. * Обрабатываемый файл: " + nameFile + " Строка в БД: " + j);
+                                    "Обнаружено большее количество столбцов в базе, не все данные обработаны. * Обрабатываемый файл: " + filePath + " Строка в БД: " + j);
                             break;
                     }
                     stringBuilder = new StringBuilder();
@@ -64,12 +66,12 @@ public class ServiceReadWrite
                     i = 0;
                     j++;
                     stringBuilder = new StringBuilder();
-                    listStudents.add(student);
+                    listStudents.add((Student) student);
                     student = new Student();
                 }
             }
-            student.setCourse(stringToInt(stringBuilder.toString()));
-            listStudents.add(student);
+            ((Student) student).setCourse(stringToInt(stringBuilder.toString()));
+            listStudents.add((Student) student);
         } catch (IOException ex) {
             new ServiceReadWrite().toLog("Line 70 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  " + ex.getMessage());
             System.out.println(ex.getMessage());
@@ -80,6 +82,7 @@ public class ServiceReadWrite
     /**
      * Принимает на вход путь к файлу с базоай данных. Возвращает список обектов Teacher
      * Считывает посимвольно и записывает в объект, как только строка полностью считана отправляет объект в ArrayList
+     * @return
      */
     public ArrayList<Teacher> readTeacher(String filePath) {
         StringBuilder stringBuilder = new StringBuilder();

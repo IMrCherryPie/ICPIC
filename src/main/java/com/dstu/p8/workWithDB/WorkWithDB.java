@@ -1,20 +1,65 @@
 package com.dstu.p8.workWithDB;
 
+import com.dstu.p6.interfaces.Man;
+import com.dstu.p6.student.Student;
+import com.dstu.p6.teacher.Teacher;
+
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
 public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
 
     private boolean aFirstRound = true;
+    private Statement statement;
 
     public void addNewData(ArrayList<T> arrayListObject, Statement statement) {
+        this.statement = statement;
         if (!arrayListObject.isEmpty()) {
+            simplePushDBStudentOrTeacher(arrayListObject);
+        }
+    }
 
-            HashMap<String, ArrayList<String>> mapClassListField = getFields(arrayListObject);
-            System.out.println(mapClassListField);
-//            getHashMapFieldValue(mapClassListField,arrayListObject);
+    /*public void addNewData(ArrayList<Man> arrayListMan, Statement statement) {
+        this.statement = statement;
+        if (!arrayListMan.isEmpty()) {
+            simplePushDBStudentOrTeacher(arrayListMan);
+        }
+    }*/
 
+    private void simplePushDBStudentOrTeacher(ArrayList<T> listStudent){
+
+        for (T man : listStudent) {
+            try {
+                if (man instanceof  Student) {
+                    String tableName = "Student";
+                    String name = man.getName();
+                    String patronymic = man.getPatronymic();
+                    String surname = man.getSurname();
+                    String position = ((Student) man).getGroup();
+                    int course = ((Student) man).getCourse();
+
+                    statement.executeUpdate("INSERT INTO " + tableName +  " (naem, patronymic, surname, position, course) " +
+                            "VALUES ( " + name + " " +patronymic + " " +surname + " " +position + " " + course + ")");
+
+                }else if (man instanceof Teacher){
+
+                    String tableName = "Student";
+                    String name = man.getName();
+                    String patronymic = man.getPatronymic();
+                    String surname = man.getSurname();
+                    String position = ((Teacher) man).getPosition();
+                    String department = ((Teacher) man).getDepartment();
+                    int experience = ((Teacher) man).getExperience();
+
+                    statement.executeUpdate("INSERT INTO Teacher (name, patronymic, surname, position, department, experience) " +
+                            "VALUES ( '" + name + "'," + "'" +patronymic + "'," + "'" +surname + "'," + "'" +position + "'," + "'" +department + "',"  +experience + ")");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
 
