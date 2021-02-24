@@ -39,13 +39,10 @@ public class WorkWithDBv2<T> {
                     statement.executeUpdate("INSERT INTO " + tableName + " (`name`, patronymic, surname, `group`, course) " +
                             "VALUES ( '" + name + "', '" + patronymic + "', '" + surname + "', '" + group + "', " + course + ")");
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     private void simplePushDBTeacher(ArrayList<Teacher> listStudent) {
