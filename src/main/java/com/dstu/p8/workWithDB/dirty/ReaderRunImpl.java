@@ -1,6 +1,6 @@
 package com.dstu.p8.workWithDB.dirty;
 
-import com.dstu.p8.Service;
+import com.dstu.p8.service.ServiceRequestAndPrint;
 
 import java.sql.*;
 
@@ -14,7 +14,7 @@ public class ReaderRunImpl implements Runnable {
     public void run() {
         try {
             PreparedStatement preparedStatement;
-            Service service = new Service();
+            ServiceRequestAndPrint service = new ServiceRequestAndPrint();
             preparedStatement = connection.prepareStatement("SELECT * FROM Student WHERE id = 5" );
             ResultSet resultSet = preparedStatement.executeQuery();
             service.printResultSetStudentOrTeacher(resultSet, true);

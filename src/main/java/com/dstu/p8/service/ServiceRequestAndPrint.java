@@ -1,4 +1,4 @@
-package com.dstu.p8;
+package com.dstu.p8.service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Service {
+public class ServiceRequestAndPrint {
 
     /**
      * Метод осущетсвляет запрос к таблице, указанной пользоватлем (через консоль) и выдачю всех полученных строк в консоль
