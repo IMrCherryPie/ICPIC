@@ -41,3 +41,8 @@ Wed Feb 17 17:37:20 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Seria
 Wed Feb 17 17:37:20 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
 Wed Feb 17 17:37:20 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.teacher.Teacher прошла успешно
 Wed Feb 17 17:37:20 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Thu Feb 18 17:45:09 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Thu Feb 18 17:45:09 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Thu Feb 18 17:45:09 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.teacher.Teacher прошла успешно
+Thu Feb 18 17:45:09 MSK 2021 -> Line 24 * src/main/java/com/dstu/p/service/Serialization.java *  Сериализация объектов класса: class com.dstu.p6.student.Student прошла успешно
+Thu Feb 18 17:45:26 MSK 2021 -> Line 70 * src/main/java/com/dstu/p/service/ServiceReadWrite.java *  src\main\resources\test.txt (Не удается найти указанный файл)

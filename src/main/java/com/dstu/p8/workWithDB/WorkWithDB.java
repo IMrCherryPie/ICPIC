@@ -14,75 +14,13 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
     private boolean aFirstRound = true;
     private Statement statement;
 
-    public void addNewData(ArrayList<Man> arrayListMan, Statement statement) {
+    public void addNewData(ArrayList<T> arrayListMan, Statement statement) {
         this.statement = statement;
-        if (!arrayListMan.isEmpty()) {
-            if (arrayListMan instanceof com.dstu.p6.interfaces.Student){
-                ArrayList<Student> arrayList = new ArrayList<Student>((Collection<? extends Student>) arrayListMan);
-                simplePushDBStudent(arrayList);
-            }else if (arrayListMan instanceof com.dstu.p6.interfaces.Teacher){
-                ArrayList<Teacher> arrayList = new ArrayList<Teacher>((Collection<? extends Teacher>) arrayListMan);
-                simplePushDBTeacher(arrayList);
-            }
-        }
-    }
-
-    /*public void addNewData(ArrayList<Man> arrayListMan, Statement statement) {
-        this.statement = statement;
-        if (!arrayListMan.isEmpty()) {
-            simplePushDBStudentOrTeacher(arrayListMan);
-        }
-    }*/
-
-    private void simplePushDBStudent(ArrayList<Student> listStudent){
-
-        for (Student man : listStudent) {
-            try {
-                if (man instanceof  Student) {
-                    String tableName = "Student";
-                    man.getClass().getSimpleName();
-                    String name = man.getName();
-                    String patronymic = man.getPatronymic();
-                    String surname = man.getSurname();
-                    String position = ((Student) man).getGroup();
-                    int course = ((Student) man).getCourse();
-
-                    statement.executeUpdate("INSERT INTO " + tableName +  " (naem, patronymic, surname, position, course) " +
-                            "VALUES ( " + name + " " +patronymic + " " +surname + " " +position + " " + course + ")");
-
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
 
     }
-    private void simplePushDBTeacher(ArrayList<Teacher> listStudent){
 
-        for (Teacher man : listStudent) {
-            try {
-                if (man instanceof  Teacher) {
 
-                    String tableName = "Student";
-                    String name = man.getName();
-                    String patronymic = man.getPatronymic();
-                    String surname = man.getSurname();
-                    String position = ((Teacher) man).getPosition();
-                    String department = ((Teacher) man).getDepartment();
-                    int experience = ((Teacher) man).getExperience();
-
-                    statement.executeUpdate("INSERT INTO Teacher (name, patronymic, surname, position, department, experience) " +
-                            "VALUES ( '" + name + "'," + "'" +patronymic + "'," + "'" +surname + "'," + "'" +position + "'," + "'" +department + "',"  +experience + ")");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-/*
-    private HashMap<String,HashMap<String, String>> getHashMapFieldValue(HashMap<String, ArrayList<String>> mapClassListField, ArrayList<T> listObject) {
+    private HashMap<String, HashMap<String, String>> getHashMapFieldValue(HashMap<String, ArrayList<String>> mapClassListField, ArrayList<T> listObject) {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         HashMap<String, String> map = new HashMap<>();
@@ -108,16 +46,16 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
                     System.out.println(fields);
                     for (int j = 0; j < fields.size(); j++) {
                         Field fieldOne;
-                        fieldOne =  listObject.get(i).getClass().getDeclaredField(fields.get(j));
+                        fieldOne = listObject.get(i).getClass().getDeclaredField(fields.get(j));
                         fieldOne.setAccessible(true);
                         String type = fieldOne.get(listObject.get(j)).getClass().getSimpleName();
 
 //                        Не могу понять как вытащить значение из поля родителя.
 
-                        if (i == 1 ){
-                            fieldOne =  listObject.get(i).getClass().getSuperclass().getDeclaredField(fields.get(j));
+                        if (i == 1) {
+                            fieldOne = listObject.get(i).getClass().getSuperclass().getDeclaredField(fields.get(j));
                             System.out.println();
-                        }else {
+                        } else {
                             System.out.println(fieldOne.get(listObject.get(j)));
                         }
 
@@ -130,7 +68,7 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
             }
             aFirstRound = true;
         }
-       *//* for (int i = 0; i < listObject.size(); i++) {
+        /*for (int i = 0; i < listObject.size(); i++) {
             for (int j = 0; j < listFields.size(); j++) {
                 key.append(listFields.get(j));
                 try {
@@ -145,8 +83,8 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
                 }
                 key = new StringBuilder();
             }
-        }*//*
-        HashMap<String,HashMap<String, String>> hashMapNTableNFieldValue = new HashMap<>();
+        }*/
+        HashMap<String, HashMap<String, String>> hashMapNTableNFieldValue = new HashMap<>();
         return hashMapNTableNFieldValue;
     }
 
@@ -197,20 +135,20 @@ public class WorkWithDB<T> implements com.dstu.p8.interfases.WorkWithDB {
         Field[] fields = object.getDeclaredFields();
         if (fields.length != 0) {
             for (int j = 0; j < fields.length; j++) {
-                    ArrayList<String> l;
+                ArrayList<String> l;
 
-                    if (!mapClassField.containsKey(className)) {
-                        l = new ArrayList<>();
-                        l.add(fields[j].getName());
-                        mapClassField.put(className, l);
-                    } else {
-                        l = new ArrayList<>();
-                        l = mapClassField.get(className);
-                        l.add(fields[j].getName());
-                        mapClassField.put(className, l);
-                    }
+                if (!mapClassField.containsKey(className)) {
+                    l = new ArrayList<>();
+                    l.add(fields[j].getName());
+                    mapClassField.put(className, l);
+                } else {
+                    l = new ArrayList<>();
+                    l = mapClassField.get(className);
+                    l.add(fields[j].getName());
+                    mapClassField.put(className, l);
+                }
             }
         }
         return mapClassField;
-    }*/
+    }
 }

@@ -4,6 +4,7 @@ import com.dstu.p6.interfaces.Man;
 import com.dstu.p6.service.ServiceReadWrite;
 import com.dstu.p6.student.Student;
 import com.dstu.p8.workWithDB.WorkWithDB;
+import com.dstu.p8.workWithDB.WorkWithDBv2;
 
 import java.sql.*;
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class App8 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        String pathStudentBD = "src/main/resources/test.txt";
+        String pathStudentBD = "src/main/resources/student.txt";
 
         String userName = "root";
         String password = "root";
@@ -27,15 +28,15 @@ public class App8 {
             ServiceReadWrite read = new ServiceReadWrite();
             ArrayList<Student> students = read.readStudent(pathStudentBD);
 
-            new WorkWithDB<Student>().addNewData(students, statement);
+            new WorkWithDBv2<Student>().addNewData(students, statement);
 
             String sql = "INSERT INTO Products (ProductName, Price) Values (?, ?)";
-//            statement.executeUpdate("DROP TABLE Books");
-//            statement.executeUpdate("CREATE TABLE IF NOT EXISTS teacher (id MEDIUMINT NOT NULL AUTO_INCREMENT, name CHAR(30) NOT NULL, PRIMARY KEY(id));");
-//            statement.executeUpdate("INSERT INTO teacher (name, patronymic, surname, position, department, experience) " +
-//                    "VALUES ('Victor', 'Victorov', 'Victorovich', 'Doc. of since', 'IIVT', 3)");
-//            statement.executeUpdate("INSERT INTO student (name, patronymic, surname, `group`, course) " +
-////                    "VALUES ('Victor', 'Victorov', 'Victorovich', 'VIS31', 3)");
+            /*statement.executeUpdate("DROP TABLE Books");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS teacher (id MEDIUMINT NOT NULL AUTO_INCREMENT, name CHAR(30) NOT NULL, PRIMARY KEY(id));");
+            statement.executeUpdate("INSERT INTO teacher (name, patronymic, surname, position, department, experience) " +
+                    "VALUES ('Victor', 'Victorov', 'Victorovich', 'Doc. of since', 'IIVT', 3)");
+            statement.executeUpdate("INSERT INTO student (name, patronymic, surname, `group`, course) " +
+                    "VALUES ('Victor', 'Victorov', 'Victorovich', 'VIS31', 3)");*/
 
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM student");
