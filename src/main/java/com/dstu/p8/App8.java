@@ -18,19 +18,23 @@ public class App8 {
             Connection connection = customConnection.getConnection();
             if(connection != null) {
 
-                Statement statement = connection.createStatement();
+//                Statement statement = connection.createStatement();
 
                 ServiceRequestAndPrint service = new ServiceRequestAndPrint();
 
-                ServiceReadWrite read = new ServiceReadWrite();
-                ArrayList<Student> students = read.readStudent(pathStudentBD);
-                new WorkWithDBv2<Student>().addNewData(students, statement);
+//                ServiceReadWrite read = new ServiceReadWrite();
+//                ArrayList<Student> students = read.readStudent(pathStudentBD);
+//                new WorkWithDBv2<Student>().addNewData(students, statement);
 
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM student");
+                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM student WHERE id > ? and id < ? ");
+                preparedStatement.setInt(1,6);
+                preparedStatement.setInt(2,10);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 service.printResultSetStudentOrTeacher(resultSet, true);
 
-                preparedStatement = connection.prepareStatement("SELECT * FROM teacher");
+                preparedStatement = connection.prepareStatement("SELECT * FROM teacher WHERE id > ? and id < ? ");
+                preparedStatement.setInt(1,2);
+                preparedStatement.setInt(2,4);
                 resultSet = preparedStatement.executeQuery();
                 service.printResultSetStudentOrTeacher(resultSet, false);
 
