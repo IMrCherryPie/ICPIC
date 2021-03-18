@@ -1,22 +1,22 @@
 package com.dstu.dao;
 
 import com.dstu.bl.HibernateConnect;
-import com.dstu.entity.Party;
 import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public abstract class DAOImpl<T> {
 
     private final EntityManager entityManager = HibernateConnect.entityManager;
     private Session session = null;
 
-    protected DAOImpl() throws IllegalAccessException, InstantiationException {
+    protected DAOImpl() {
     }
 
+
     /**
-     *Create new obj in students table.
-     *
+     * Create new obj in students table.
      */
     public void create(Class<?> t) {
 
@@ -27,6 +27,7 @@ public abstract class DAOImpl<T> {
         session.getTransaction().commit();
 
     }
+
     /**
      * Get Teacher by model
      *
@@ -35,12 +36,12 @@ public abstract class DAOImpl<T> {
      */
     public T findById(Class<?> dev, int id) throws IllegalAccessException, InstantiationException {
         final T result = (T) session.get(dev, id);
-        return result !=null ? result : (T) dev.newInstance();
+        return result != null ? result : (T) dev.newInstance();
 
     }
+
     /**
      * Update teacher state.
-     *
      */
     public void update(T t) {
 
@@ -52,9 +53,9 @@ public abstract class DAOImpl<T> {
 
         session.getTransaction().commit();
     }
+
     /**
      * Save teacher state.
-     *
      */
     public void save(T t) {
 
@@ -66,9 +67,9 @@ public abstract class DAOImpl<T> {
 
         session.getTransaction().commit();
     }
+
     /**
      * Delete teacher.
-     *
      */
     public void delete(T t) {
 
@@ -79,8 +80,10 @@ public abstract class DAOImpl<T> {
         session.getTransaction().commit();
     }
 
-    public T findAll(Class<?> dev){
+    public List<T> findAll(Class<?> dev) {
         session = entityManager.unwrap(Session.class);
-        return (T) session.createQuery("FROM Party ", dev.getClass());
+        System.out.println(dev.getName());
+        System.out.println(dev.getSimpleName());
+        return (List<T>) session.createQuery("FROM " + dev.getSimpleName()).getResultList();
     }
 }

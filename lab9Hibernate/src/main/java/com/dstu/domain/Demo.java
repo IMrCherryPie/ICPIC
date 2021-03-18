@@ -1,20 +1,33 @@
 package com.dstu.domain;
 
+import com.dstu.dao.PartyDAO;
+import com.dstu.dao.StudentDAO;
+import com.dstu.dao.TeacherDAO;
 import com.dstu.entity.Party;
 import com.dstu.entity.Student;
 import com.dstu.entity.Teacher;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Demo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
 
-        createBasicData();
+//        ArrayList<Student> list = new ReadWrite().readStudent("lab9Hibernate/src/main/resources/StudetsBD.txt");
+//        for (Student student: list) {
+//            System.out.println(student);
+//        }
+
+        PartyDAO partyDAO = new PartyDAO();
+
+        ArrayList<Party> parties = (ArrayList<Party>) partyDAO.findAll(Party.class);
+        System.out.println(parties);
+
+
     }
 
-    private static void createBasicData() {
+    private static void createBasicData() throws InstantiationException, IllegalAccessException {
+
+
         Party group1 = new Party();
         group1.setName("VIS");
         Party group2 = new Party();
@@ -60,16 +73,16 @@ public class Demo {
         student2.setCourse(4);
         student2.setGroup(group2);
 
-//        PartyDAO partyDAO = new PartyDAO();
-//        partyDAO.save(group1);
-//        partyDAO.save(group2);
+        PartyDAO partyDAO = new PartyDAO();
+        partyDAO.save(group1);
+        partyDAO.save(group2);
 
-//        TeacherDAO teacherDAO = new TeacherDAO();
-//        teacherDAO.save(teacher1);
-//        teacherDAO.save(teacher2);
+        TeacherDAO teacherDAO = new TeacherDAO();
+        teacherDAO.save(teacher1);
+        teacherDAO.save(teacher2);
 
-//        StudentDAO studentDAO = new StudentDAO();
-//        studentDAO.save(student1);
-//        studentDAO.save(student2);
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.save(student1);
+        studentDAO.save(student2);
     }
 }
