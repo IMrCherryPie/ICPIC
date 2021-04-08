@@ -15,6 +15,10 @@ public abstract class DAOImpl<T> {
     }
 
 
+    public EntityManager getEntityManager(){
+        return entityManager;
+    }
+
     /**
      * Create new obj in students table.
      */
@@ -82,8 +86,6 @@ public abstract class DAOImpl<T> {
 
     public List<T> findAll(Class<?> dev) {
         session = entityManager.unwrap(Session.class);
-        System.out.println(dev.getName());
-        System.out.println(dev.getSimpleName());
         return (List<T>) session.createQuery("FROM " + dev.getSimpleName()).getResultList();
     }
 }
